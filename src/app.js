@@ -388,9 +388,9 @@ try {
 } catch (error) {
   logger.error('Fatal error during bot startup:', error);
   process.exit(1);
-});
+}
 
-client.on('messageCreate', async (message) => {
+bot.on('messageCreate', async (message) => {
 
     console.log(`Message received: ${message.content}`);
 
