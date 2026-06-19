@@ -404,17 +404,3 @@ bot.on('messageCreate', async (message) => {
         }
     }
 });
-
-const setupShutdown = () => {
-  
-  setupShutdown();
-  bot.start().catch((error) => {
-    logger.error('Fatal error during bot startup:', error);
-    bot.shutdown('STARTUP_ERROR');
-  });
-} catch (error) {
-  logger.error('Fatal error during bot startup:', error);
-  process.exit(1);
-}
-
-    
