@@ -404,3 +404,12 @@ bot.on('messageCreate', async (message) => {
         }
     }
 });
+
+setupShutdown();
+
+bot.start().catch((error) => {
+    logger.error('Fatal error during bot startup:', error);
+    bot.shutdown('STARTUP_ERROR');
+});
+
+export default TitanBot;
