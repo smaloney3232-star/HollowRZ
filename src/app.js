@@ -391,6 +391,9 @@ try {
 });
 
 client.on('messageCreate', async (message) => {
+
+    console.log(`Message received: ${message.content}`);
+
     if (message.author.bot) return;
 
     const wlChannelId = '1515880874208395284';
