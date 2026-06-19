@@ -388,6 +388,28 @@ try {
 } catch (error) {
   logger.error('Fatal error during bot startup:', error);
   process.exit(1);
-}
+});
+
+client.on('messageCreate', async (message) => {
+    if (message.author.bot) return;
+
+    const wlChannelId = '1515880874208395284';
+    const whitelistRoleId = '1516495739285409982';
+
+    if (
+        message.channel.id === wlChannelId &&
+        message.content.toLowerCase() === 'wl'
+    ) {
+        const member = message.member;
+
+        if (!member.roles.cache.has(whitelistRoleId)) {
+            await member.roles.add(whitelistRoleId);
+
+            await message.reply({
+                content: '✅ You have been whitelisted!'
+            });
+        }
+    }
+});
 
 export default TitanBot;
