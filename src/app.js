@@ -356,7 +356,7 @@ class TitanBot extends Client {
   }
 }
 
-try {
+
   const bot = new TitanBot();
   
   const setupShutdown = () => {
@@ -379,6 +379,34 @@ try {
       bot.shutdown('UNHANDLED_REJECTION');
     });
   };
+
+const bot = new TitanBot();
+
+bot.on('messageCreate', async (message) => {
+    console.log(`Message received: ${message.content}`);
+
+    if (message.author.bot) return;
+
+    const wlChannelId = '1515880874208395284';
+    const whitelistRoleId = '1516495739285409982';
+
+    if (
+        message.channel.id === wlChannelId &&
+        message.content.toLowerCase() === 'wl'
+    ) {
+        const member = message.member;
+
+        if (!member.roles.cache.has(whitelistRoleId)) {
+            await member.roles.add(whitelistRoleId);
+
+            await message.reply({
+                content: '✅ You have been whitelisted!'
+            });
+        }
+    }
+});
+
+const setupShutdown = () => {
   
   setupShutdown();
   bot.start().catch((error) => {
@@ -390,29 +418,4 @@ try {
   process.exit(1);
 }
 
-try {
-    const bot = new TitanBot();
-
-    bot.on('messageCreate', async (message) => {
-        console.log(`Message received: ${message.content}`);
-
-        if (message.author.bot) return;
-
-        const wlChannelId = '1515880874208395284';
-        const whitelistRoleId = '1516495739285409982';
-
-        if (
-            message.channel.id === wlChannelId &&
-            message.content.toLowerCase() === 'wl'
-        ) {
-            const member = message.member;
-
-            if (!member.roles.cache.has(whitelistRoleId)) {
-                await member.roles.add(whitelistRoleId);
-
-                await message.reply({
-                    content: '✅ You have been whitelisted!'
-                });
-            }
-        }
-    });
+    
