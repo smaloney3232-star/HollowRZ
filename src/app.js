@@ -380,7 +380,6 @@ class TitanBot extends Client {
     });
   };
 
-const bot = new TitanBot();
 
 bot.on('messageCreate', async (message) => {
     console.log(`Message received: ${message.content}`);
