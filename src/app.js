@@ -390,29 +390,29 @@ try {
   process.exit(1);
 }
 
-bot.on('messageCreate', async (message) => {
+try {
+    const bot = new TitanBot();
 
-    console.log(`Message received: ${message.content}`);
+    bot.on('messageCreate', async (message) => {
+        console.log(`Message received: ${message.content}`);
 
-    if (message.author.bot) return;
+        if (message.author.bot) return;
 
-    const wlChannelId = '1515880874208395284';
-    const whitelistRoleId = '1516495739285409982';
+        const wlChannelId = '1515880874208395284';
+        const whitelistRoleId = '1516495739285409982';
 
-    if (
-        message.channel.id === wlChannelId &&
-        message.content.toLowerCase() === 'wl'
-    ) {
-        const member = message.member;
+        if (
+            message.channel.id === wlChannelId &&
+            message.content.toLowerCase() === 'wl'
+        ) {
+            const member = message.member;
 
-        if (!member.roles.cache.has(whitelistRoleId)) {
-            await member.roles.add(whitelistRoleId);
+            if (!member.roles.cache.has(whitelistRoleId)) {
+                await member.roles.add(whitelistRoleId);
 
-            await message.reply({
-                content: '✅ You have been whitelisted!'
-            });
+                await message.reply({
+                    content: '✅ You have been whitelisted!'
+                });
+            }
         }
-    }
-});
-
-export default TitanBot;
+    });
