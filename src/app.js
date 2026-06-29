@@ -230,7 +230,22 @@ startupLog('Registering slash commands...');
 
     startServer(configuredPort, 0);
   }
+async updateBotStatus() {
+    try {
+        const response = await fetch('http://YOUR_SERVER_IP:30120/dynamic.json');
+        const data = await response.json();
 
+        this.user.setPresence({
+            activities: [{
+                name: `${data.clients}/${data.sv_maxclients} In City`,
+                type: ActivityType.Watching,
+            }],
+            status: 'online',
+        });
+    } catch (err) {
+        console.error('Status update failed:', err);
+    }
+}
   setupCronJobs() {
     cron.schedule('0 6 * * *', () => checkBirthdays(this));
     cron.schedule('* * * * *', () => checkGiveaways(this));
