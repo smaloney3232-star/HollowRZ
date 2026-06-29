@@ -1,5 +1,5 @@
 ﻿import 'dotenv/config';
-import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, ActivityType } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import express from 'express';
 import cron from 'node-cron';
@@ -80,8 +80,13 @@ class TitanBot extends Client {
       startupLog('Handlers loaded');
       
       startupLog('Logging into Discord...');
-      await this.login(this.config.bot.token);
-      startupLog('Discord login successful');
+await this.login(this.config.bot.token);
+startupLog('Discord login successful');
+
+this.updateBotStatus();
+setInterval(() => this.updateBotStatus(), 30000);
+
+startupLog('Registering slash commands...');
       
       startupLog('Registering slash commands...');
       await this.registerCommands();
