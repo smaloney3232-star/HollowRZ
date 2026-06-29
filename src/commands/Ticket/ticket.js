@@ -160,31 +160,31 @@ description: panelMessage,
 
                    const ticketButtons = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
-        .setCustomId("general_support")
+        .setCustomId("create_ticket")
         .setLabel("General Support")
         .setStyle(ButtonStyle.Primary)
         .setEmoji("⚔️"),
 
     new ButtonBuilder()
-        .setCustomId("female_Verification")
+        .setCustomId("create_ticket")
         .setLabel("female Verification")
         .setStyle(ButtonStyle.Danger)
         .setEmoji("💖"),
 
     new ButtonBuilder()
-        .setCustomId("player_report")
+        .setCustomId("create_ticket")
         .setLabel("Player Report")
         .setStyle(ButtonStyle.Secondary)
         .setEmoji("🚨"),
 
     new ButtonBuilder()
-        .setCustomId("staff_report")
+        .setCustomId("create_ticket")
         .setLabel("Staff Report")
         .setStyle(ButtonStyle.Secondary)
         .setEmoji("👮"),
 
     new ButtonBuilder()
-        .setCustomId("donation_support")
+        .setCustomId("create_ticket")
         .setLabel("Donation Support")
         .setStyle(ButtonStyle.Success)
         .setEmoji("💰")
