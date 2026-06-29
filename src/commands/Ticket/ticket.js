@@ -158,18 +158,41 @@ description: panelMessage,
                 color: getColor('info')
             });
 
-            const ticketButton = new ActionRowBuilder().addComponents(
-                new ButtonBuilder()
-                    .setCustomId("create_ticket")
-.setLabel(buttonLabel)
-                    .setStyle(ButtonStyle.Primary)
-                    .setEmoji("📩"),
-            );
+                   const ticketButtons = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+        .setCustomId("general_support")
+        .setLabel("General Support")
+        .setStyle(ButtonStyle.Primary)
+        .setEmoji("⚔️"),
 
+    new ButtonBuilder()
+        .setCustomId("female_Verification")
+        .setLabel("female Verification")
+        .setStyle(ButtonStyle.Danger)
+        .setEmoji("💖"),
+
+    new ButtonBuilder()
+        .setCustomId("player_report")
+        .setLabel("Player Report")
+        .setStyle(ButtonStyle.Secondary)
+        .setEmoji("🚨"),
+
+    new ButtonBuilder()
+        .setCustomId("staff_report")
+        .setLabel("Staff Report")
+        .setStyle(ButtonStyle.Secondary)
+        .setEmoji("👮"),
+
+    new ButtonBuilder()
+        .setCustomId("donation_support")
+        .setLabel("Donation Support")
+        .setStyle(ButtonStyle.Success)
+        .setEmoji("💰")
+);
             try {
                 await panelChannel.send({
                     embeds: [setupEmbed],
-                    components: [ticketButton],
+                    components: [ticketButtons],
                 });
 
                 if (client.db && interaction.guildId) {
