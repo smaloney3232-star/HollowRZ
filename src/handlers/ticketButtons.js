@@ -166,15 +166,42 @@ const createTicketModalHandler = {
       if (!deferSuccess) return;
       
       const reason = interaction.fields.getTextInputValue('reason');
-      const config = await getGuildConfig(client, interaction.guildId);
-      const categoryId = config.ticketCategoryId || null;
-      
-      const result = await createTicket(
-        interaction.guild,
-        interaction.member,
-        categoryId,
-        reason
-      );
+const config = await getGuildConfig(client, interaction.guildId);
+
+let categoryId;
+
+switch (ticketType) {
+    case "general_support":
+        categoryId = "YOUR_GENERAL_CATEGORY_ID";
+        break;
+
+    case "female_Verification":
+        categoryId = "YOUR_FEMALE_CATEGORY_ID";
+        break;
+
+    case "player_report":
+        categoryId = "YOUR_PLAYER_REPORT_CATEGORY_ID";
+        break;
+
+    case "staff_report":
+        categoryId = "YOUR_STAFF_REPORT_CATEGORY_ID";
+        break;
+
+    case "donation_support":
+        categoryId = "YOUR_DONATION_CATEGORY_ID";
+        break;
+
+    default:
+        categoryId = config.ticketCategoryId || null;
+        break;
+}
+
+const result = await createTicket(
+    interaction.guild,
+    interaction.member,
+    categoryId,
+    reason
+);
       
       if (result.success) {
         await interaction.editReply({
